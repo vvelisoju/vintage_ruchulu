@@ -5,7 +5,7 @@ export interface Product {
   price: number;
   weight: string;
   spiceLevel: 1 | 2 | 3 | 4 | 5;
-  category: string;
+  category: "pickles" | "sweets" | "hots";
   image: string;
   ingredients: string[];
   shelfLife: string;

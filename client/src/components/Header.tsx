@@ -41,16 +41,6 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
             <Button
               variant="outline"
               size="icon"
-              onClick={handleWhatsAppClick}
-              className="hidden sm:flex bg-[#25D366] hover:bg-[#25D366] text-white border-[#25D366] shrink-0"
-              data-testid="button-whatsapp-header"
-            >
-              <MessageCircle className="h-5 w-5" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="icon"
               onClick={onCartClick}
               className="relative shrink-0"
               data-testid="button-cart"
