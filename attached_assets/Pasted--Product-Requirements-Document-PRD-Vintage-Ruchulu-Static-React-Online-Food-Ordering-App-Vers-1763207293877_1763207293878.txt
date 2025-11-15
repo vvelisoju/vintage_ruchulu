@@ -1,0 +1,352 @@
+📄 Product Requirements Document (PRD)
+Vintage Ruchulu — Static React Online Food Ordering App
+
+Version: 1.0
+Owner: Vintage Ruchulu (Warangal)
+Platform: Static React (No backend)
+Primary Ordering Method: WhatsApp
+
+1. Overview
+
+Vintage Ruchulu is a food brand based in Warangal, offering authentic, homemade Non-Veg Pickles and (in future) other vintage food items.
+
+This project is a fully static React web app that allows customers to browse products, add them to cart, and place an order via WhatsApp. No backend or database will be used; all data (products, images, prices, categories) is stored within the React codebase.
+
+The app is optimized for mobile-first usage, simple UI, easy ordering, and fast static deployment (e.g., Replit, Netlify, Vercel).
+
+2. Goals
+Primary Goals
+
+Provide a static, fast-loading React app to showcase the product catalog.
+
+Enable customers to build a cart and place an order via WhatsApp.
+
+Make editing prices, images, and product lists easy from within the code.
+
+Include brand identity and trust-building content for Vintage Ruchulu.
+
+Secondary Goals
+
+Prepare scalable structure to add future categories (e.g., sweets, snacks).
+
+Support repeat orders with prefilled customer info.
+
+Maintain a simple, affordable ordering process with no backend cost.
+
+3. Target Users
+Primary Users
+
+Local customers in Telangana/Andhra Pradesh looking for homemade pickles and food items.
+
+Returning customers who order repeatedly and prefer WhatsApp communication.
+
+User Needs
+
+Quick and easy ordering.
+
+Clear product visuals & pricing.
+
+Simple checkout — no registration.
+
+Ability to contact the business via WhatsApp instantly.
+
+4. Key Features
+4.1 Product Catalog
+
+Requirements
+
+Display a list/grid of all available products.
+
+Each product includes:
+
+Name
+
+Image
+
+Price
+
+Weight/Quantity
+
+Spice level
+
+Short description
+
+Category
+
+All products must be stored in a static file such as:
+src/data/products.js
+
+Notes
+
+Initial launch will contain 6–10 Non-veg Pickles.
+
+Future categories can be added via configuration.
+
+4.2 Product Details (Optional but Recommended)
+
+Clicking a product may open a modal or details page showing:
+
+Larger image
+
+Full description
+
+Ingredients
+
+Shelf-life
+
+SKU / ID
+
+“Add to Cart”
+
+4.3 Shopping Cart
+
+Must Have
+
+Add/remove/update quantity
+
+Show item total and cart total
+
+Persist cart with localStorage
+
+Provide "Clear Cart" option
+
+Cart indicator/badge in header
+
+Prevent checkout if cart is empty
+
+Optional Enhancements
+
+Toast notification on adding item
+
+Floating cart button on mobile
+
+4.4 Customer Details Form
+
+Before checkout, collect:
+
+Name (required)
+
+Phone (required)
+
+Address (optional)
+
+Delivery notes (optional)
+
+Store this in:
+
+React state
+
+localStorage (for repeat customers)
+
+4.5 WhatsApp Checkout
+Requirements
+
+A “Checkout via WhatsApp” button.
+
+Generate WhatsApp message using:
+
+Business Name: Vintage Ruchulu
+
+Location: Warangal
+
+Item list with quantity × price
+
+Cart total
+
+Customer details
+
+Auto-generated order ID
+
+Use static WhatsApp number: +91 8500154848
+
+Format link:
+https://wa.me/918500154848?text=ENCODED_MESSAGE
+
+Example Order Message
+Vintage Ruchulu (Warangal) - New Order
+
+2 x Gongura Chicken Pickle (200g) - ₹320
+1 x Nellore Fish Pickle (200g) - ₹180
+
+Total: ₹500
+
+Customer Details:
+Name: Kiran
+Phone: 9876543210
+Address: Near Kazipet Flyover
+
+Order ID: VR-20250115-001
+
+4.6 Branding & Content
+Header
+
+App logo (optional)
+
+Brand Name: Vintage Ruchulu
+
+Tagline: Authentic homemade pickles & food items at affordable prices
+
+Footer
+
+Contact Number (WhatsApp): +91 8500154848
+
+Location: Warangal
+
+Instagram/Facebook links (optional)
+
+Copyright notice
+
+4.7 Pages/Sections
+
+Home / Products List
+
+Cart Page or Cart Drawer
+
+Checkout Modal (Before WhatsApp)
+
+About Us Section
+
+Contact / WhatsApp CTA
+
+5. Non-Functional Requirements
+5.1 Performance
+
+App must load in under 2 seconds on 3G networks.
+
+All images optimized (<200 KB each).
+
+5.2 Maintainability
+
+Product data stored in one place (/data/products.js).
+
+WhatsApp number stored in config.js.
+
+Code must be readable, modular, and component-based.
+
+5.3 Security
+
+No sensitive data stored on server (static app).
+
+Customer phone/address stored only in localStorage (optional).
+
+5.4 Accessibility
+
+Alt text for all images.
+
+Proper semantic HTML.
+
+Buttons accessible via keyboard.
+
+6. Technical Requirements
+6.1 Tech Stack
+
+React 18+
+
+Vite (preferred) or CRA
+
+Tailwind CSS or simple CSS
+
+No backend
+
+No API calls
+
+LocalStorage for persistence
+
+6.2 File Structure
+src/
+  components/
+    Header.jsx
+    Footer.jsx
+    ProductCard.jsx
+    ProductList.jsx
+    Cart.jsx
+    CartItem.jsx
+    CheckoutModal.jsx
+  data/
+    products.js
+  utils/
+    whatsapp.js
+    format.js
+  pages/
+    Home.jsx
+  config.js
+  App.jsx
+  main.jsx
+public/
+  assets/
+    product-images...
+README.md
+
+7. Detailed User Flows
+7.1 Browse → Add to Cart → WhatsApp Order
+
+User opens site
+↓
+Sees list of products
+↓
+Clicks “Add to Cart”
+↓
+Cart badge updates
+↓
+User goes to cart
+↓
+Updates quantities
+↓
+Clicks Checkout
+↓
+Fills Name, Phone, Address
+↓
+Clicks Send Order via WhatsApp
+↓
+WhatsApp opens with prefilled message
+↓
+Order goes directly to Vintage Ruchulu
+
+7.2 Repeat Customer
+
+Customer info prefilled from localStorage
+
+Faster checkout experience
+
+8. Edge Cases
+
+Cart empty → Disable checkout button
+
+Quantity cannot go below 1
+
+Phone number required before checkout
+
+If WhatsApp link fails, show “Copy Order Text” fallback
+
+If customer refreshes, cart remains intact using localStorage
+
+9. Future Enhancements (Out of Scope for V1)
+
+Multiple product categories (Sweets, Snacks)
+
+Coupon codes or discounts
+
+PWA support (installable app)
+
+Product ratings
+
+Admin dashboard
+
+Payment gateway integration
+
+Delivery fee calculation logic
+
+Search and filters for products
+
+Analytics integration
+
+10. Acceptance Criteria
+✔ Static React app builds & deploys without backend
+✔ Product list loads from static products.js
+✔ Cart works fully (add/update/remove/persist)
+✔ Checkout modal collects customer details
+✔ WhatsApp order message correctly formatted
+✔ Message uses: +91 8500154848
+✔ Responsive mobile-friendly UI
+✔ Brand details visible
+✔ Clean, bug-free UX
