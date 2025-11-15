@@ -22,7 +22,7 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <img 
-              src="/attached_assets/logo_1763208520322.PNG" 
+              src="./logo.png" 
               alt={config.brand.name}
               className="h-12 sm:h-14 md:h-16 w-auto object-contain"
               data-testid="brand-logo"

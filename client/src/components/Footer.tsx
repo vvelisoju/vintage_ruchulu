@@ -20,7 +20,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/attached_assets/logo_1763208520322.PNG" 
+                src="./logo.png" 
                 alt={config.brand.name}
                 className="h-12 w-auto object-contain"
               />
