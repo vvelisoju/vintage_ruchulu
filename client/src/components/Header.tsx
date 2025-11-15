@@ -1,4 +1,4 @@
-import { ShoppingCart, MessageCircle } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { config } from "../config";
@@ -6,37 +6,65 @@ import { config } from "../config";
 interface HeaderProps {
   cartItemCount: number;
   onCartClick: () => void;
+  onOrderNowClick: () => void;
+  onWhyChooseUsClick: () => void;
+  onOurStoryClick: () => void;
 }
 
-export function Header({ cartItemCount, onCartClick }: HeaderProps) {
-  const handleWhatsAppClick = () => {
-    const whatsappUrl = `https://wa.me/${config.contact.whatsapp.replace(/\+/g, "")}?text=${encodeURIComponent(
-      `Hi! I'd like to know more about your pickles.`
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
+export function Header({ 
+  cartItemCount, 
+  onCartClick,
+  onOrderNowClick,
+  onWhyChooseUsClick,
+  onOurStoryClick
+}: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
-          <div className="flex items-center gap-3 flex-1 min-w-0">
+          {/* Logo and Brand */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 flex-1 sm:flex-initial">
             <img 
-              src="./logo.png" 
-              alt={config.brand.name}
-              className="h-12 sm:h-14 md:h-16 w-auto object-contain"
-              data-testid="brand-logo"
+              src="/logo.png" 
+              alt="Vintage Ruchulu Logo" 
+              className="h-16 w-16 sm:h-12 sm:w-12 lg:h-14 lg:w-14 object-contain"
             />
-            <div className="flex-1 min-w-0">
-              <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground truncate" data-testid="text-brand-name">
+            <div className="">
+              <h1 className="text-lg md:text-2xl font-bold text-primary tracking-tight" data-testid="text-brand-name" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {config.brand.name}
               </h1>
-              <p className="text-xs sm:text-sm text-muted-foreground truncate" data-testid="text-tagline">
+              <p className="hidden sm:block text-xs text-muted-foreground" data-testid="text-tagline">
                 {config.brand.tagline}
               </p>
             </div>
           </div>
 
+          {/* Navigation Menu - Hidden on mobile */}
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+            <Button
+              variant="ghost"
+              className="text-sm font-medium hover:text-primary transition-colors"
+              onClick={onOrderNowClick}
+            >
+              Order Now
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-sm font-medium hover:text-primary transition-colors"
+              onClick={onWhyChooseUsClick}
+            >
+              Why Choose Us
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-sm font-medium hover:text-primary transition-colors"
+              onClick={onOurStoryClick}
+            >
+              Our Story
+            </Button>
+          </nav>
+
+          {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
             <Button
               variant="outline"
@@ -58,9 +86,35 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
             </Button>
           </div>
         </div>
-      </div>
 
-     
+        {/* Mobile Navigation - Hidden on mobile, shown on tablet/desktop */}
+        <div className="hidden md:flex lg:hidden items-center justify-center gap-1 pb-3 border-t border-border/50 mt-3 pt-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs font-medium hover:text-primary transition-colors"
+            onClick={onOrderNowClick}
+          >
+            Order Now
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs font-medium hover:text-primary transition-colors"
+            onClick={onWhyChooseUsClick}
+          >
+            Why Choose Us
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs font-medium hover:text-primary transition-colors"
+            onClick={onOurStoryClick}
+          >
+            Our Story
+          </Button>
+        </div>
+      </div>
     </header>
   );
 }

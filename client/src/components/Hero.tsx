@@ -8,7 +8,7 @@ interface HeroProps {
 
 export function Hero({ onBrowseClick }: HeroProps) {
   return (
-    <section className="relative h-48 sm:h-56 md:h-64 overflow-hidden" data-testid="section-hero">
+    <section className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden" data-testid="section-hero">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -18,16 +18,16 @@ export function Hero({ onBrowseClick }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" data-testid="div-hero-overlay" />
       
       <div className="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center" data-testid="div-hero-content">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2" data-testid="text-hero-title">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight" data-testid="text-hero-title" style={{ fontFamily: 'Poppins, sans-serif', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
           {config.brand.name}
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-white/90 mb-4 sm:mb-6 max-w-2xl" data-testid="text-hero-subtitle">
+        <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-6 sm:mb-8 max-w-2xl font-medium" data-testid="text-hero-subtitle" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
           {config.brand.tagline}
         </p>
         <Button
           onClick={onBrowseClick}
           size="lg"
-          className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 h-12 px-6"
+          className="bg-primary hover:bg-primary/90 text-white border-0 h-12 px-8 font-semibold shadow-lg"
           data-testid="button-browse-pickles"
         >
           Browse Our Pickles

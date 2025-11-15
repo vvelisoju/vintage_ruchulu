@@ -44,16 +44,26 @@ export function ProductGrid({ products, onAddToCart, onViewDetails }: ProductGri
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={onAddToCart}
-              onViewDetails={onViewDetails}
-            />
-          ))}
-        </div>
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={onAddToCart}
+                onViewDetails={onViewDetails}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 px-4">
+            <div className="text-6xl mb-4">🌶️</div>
+            <h3 className="text-2xl font-semibold text-foreground mb-2">Coming Soon!</h3>
+            <p className="text-muted-foreground text-center max-w-md">
+              We're working on adding more delicious products to this category. Check back soon for new authentic homemade treats from Vintage Ruchulu!
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

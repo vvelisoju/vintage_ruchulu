@@ -7,6 +7,7 @@ import { ProductDetailModal } from "../components/ProductDetailModal";
 import { CartDrawer } from "../components/CartDrawer";
 import { CheckoutModal } from "../components/CheckoutModal";
 import { AboutSection } from "../components/AboutSection";
+import { FeaturesSection } from "../components/FeaturesSection";
 import { Footer } from "../components/Footer";
 import { useCart } from "../hooks/useCart";
 import { Product } from "../types/product";
@@ -29,6 +30,8 @@ export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const productsRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
@@ -40,6 +43,18 @@ export default function Home() {
 
   const handleBrowseClick = () => {
     productsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleOrderNowClick = () => {
+    productsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleWhyChooseUsClick = () => {
+    featuresRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleOurStoryClick = () => {
+    aboutRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCheckout = () => {
@@ -65,7 +80,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header cartItemCount={getCartItemCount()} onCartClick={() => setIsCartOpen(true)} />
+      <Header 
+        cartItemCount={getCartItemCount()} 
+        onCartClick={() => setIsCartOpen(true)}
+        onOrderNowClick={handleOrderNowClick}
+        onWhyChooseUsClick={handleWhyChooseUsClick}
+        onOurStoryClick={handleOurStoryClick}
+      />
 
       <main className="flex-1">
         <Hero onBrowseClick={handleBrowseClick} />
@@ -79,7 +100,13 @@ export default function Home() {
           />
         </div>
 
-        <AboutSection />
+        <div ref={featuresRef}>
+          <FeaturesSection />
+        </div>
+        
+        <div ref={aboutRef}>
+          <AboutSection />
+        </div>
       </main>
 
       <Footer />

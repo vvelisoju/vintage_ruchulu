@@ -1,28 +1,24 @@
-import { Home, Sparkles, MapPin, Flame } from "lucide-react";
-import { config } from "../config";
-
-const trustIndicators = [
-  { icon: Home, text: "Homemade" },
-  { icon: Sparkles, text: "Authentic" },
-  { icon: MapPin, text: config.brand.location },
-  { icon: Flame, text: "Fresh" },
-];
+import { Badge } from "@/components/ui/badge";
 
 export function TrustBanner() {
+  const badges = [
+    { icon: "🏠", text: "Homemade with Love" },
+    { icon: "✨", text: "100% Authentic" },
+    { icon: "📍", text: "From Warangal" },
+    { icon: "🌶️", text: "Always Fresh" },
+  ];
+
   return (
-    <section className="py-4 bg-muted/30 border-y border-border" data-testid="section-trust-banner">
+    <section className="py-6 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border-y border-primary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto scrollbar-hide" data-testid="div-trust-indicators">
-          {trustIndicators.map((indicator, index) => (
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+          {badges.map((badge, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 shrink-0"
-              data-testid={`div-trust-indicator-${index}`}
+              className="flex items-center gap-2 px-4 py-2 bg-background/80 backdrop-blur-sm rounded-full border border-primary/30 shadow-sm"
             >
-              <indicator.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" data-testid={`icon-trust-${index}`} />
-              <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap" data-testid={`text-trust-${index}`}>
-                {indicator.text}
-              </span>
+              <span className="text-xl">{badge.icon}</span>
+              <span className="text-sm sm:text-base font-medium text-foreground">{badge.text}</span>
             </div>
           ))}
         </div>

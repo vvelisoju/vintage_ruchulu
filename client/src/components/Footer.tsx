@@ -1,4 +1,3 @@
-
 import { MessageCircle, MapPin, Mail, Phone, Clock, Facebook, Instagram } from "lucide-react";
 import { config } from "../config";
 
@@ -13,111 +12,73 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-muted/50 border-t border-border mt-12" data-testid="footer">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-b from-muted/50 to-muted border-t-2 border-primary/20 py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
               <img 
-                src="./logo.png" 
-                alt={config.brand.name}
-                className="h-12 w-auto object-contain"
+                src="/logo.png" 
+                alt="Vintage Ruchulu Logo" 
+                className="h-16 w-16 object-contain"
               />
+              <h3 className="text-2xl font-bold text-primary" style={{ fontFamily: 'Poppins, sans-serif' }}>{config.brand.name}</h3>
             </div>
-            <h3 className="text-lg font-semibold text-foreground mb-3" data-testid="text-footer-brand">
-              {config.brand.name}
-            </h3>
-            <p className="text-sm text-muted-foreground mb-4" data-testid="text-footer-description">
-              {config.brand.description}
-            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{config.brand.tagline}</p>
+            <div className="flex gap-2 pt-2">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-lg">🌶️</div>
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-lg">🏠</div>
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-lg">✨</div>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-3">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#products" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Our Products
-                </a>
+          {/* Contact Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-foreground">Get in Touch</h3>
+            <div className="space-y-3">
+              <button
+                onClick={handleWhatsAppClick}
+                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#25D366]/10 group-hover:bg-[#25D366]/20 flex items-center justify-center transition-colors">
+                  <MessageCircle className="h-5 w-5" style={{ color: '#25D366' }} />
+                </div>
+                <span className="font-medium">{config.contact.whatsapp}</span>
+              </button>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MapPin className="h-5 w-5 text-primary" />
+                </div>
+                <span>{config.brand.location}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Info Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-foreground">Our Promise</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-center gap-3">
+                <span className="text-primary text-lg">✓</span> Authentic homemade recipes
               </li>
-              <li>
-                <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About Us
-                </a>
+              <li className="flex items-center gap-3">
+                <span className="text-primary text-lg">✓</span> Premium fresh ingredients
               </li>
-              <li>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleWhatsAppClick(); }} className="text-muted-foreground hover:text-foreground transition-colors">
-                  Order Now
-                </a>
+              <li className="flex items-center gap-3">
+                <span className="text-primary text-lg">✓</span> Traditional cooking methods
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-primary text-lg">✓</span> Made with love in Warangal
               </li>
             </ul>
           </div>
-
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-3" data-testid="text-footer-contact-heading">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin className="h-4 w-4 text-primary shrink-0" />
-                <span>{config.brand.location}</span>
-              </div>
-              
-              <button
-                onClick={handleWhatsAppClick}
-                className="flex items-center gap-2 text-sm hover-elevate active-elevate-2 p-2 rounded-md -ml-2 w-full text-left"
-                data-testid="button-footer-whatsapp"
-              >
-                <MessageCircle className="h-4 w-4 text-[#25D366] shrink-0" data-testid="icon-whatsapp" />
-                <span className="text-foreground" data-testid="text-footer-phone">{config.contact.whatsappFormatted}</span>
-              </button>
-
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Clock className="h-4 w-4 text-primary shrink-0" />
-                <span>Available 9 AM - 8 PM</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Business Hours & Social */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-3">Follow Us</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Stay updated with our latest products and offers
-            </p>
-            <div className="flex gap-3">
-              <a 
-                href="#" 
-                className="flex items-center justify-center h-10 w-10 rounded-full bg-muted hover:bg-muted/70 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5 text-foreground" />
-              </a>
-              <a 
-                href="#" 
-                className="flex items-center justify-center h-10 w-10 rounded-full bg-muted hover:bg-muted/70 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5 text-foreground" />
-              </a>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4" data-testid="text-footer-availability">
-              💚 We're available on WhatsApp for orders and inquiries
-            </p>
-          </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-border">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-muted-foreground text-center sm:text-left" data-testid="text-copyright">
-              © {currentYear} {config.brand.name}. All rights reserved.
-            </p>
-            <div className="flex gap-4 text-xs text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
-            </div>
-          </div>
+        <div className="mt-10 pt-8 border-t border-border text-center">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} <span className="font-semibold text-foreground">{config.brand.name}</span>. Crafted with ❤️ in Warangal.
+          </p>
         </div>
       </div>
     </footer>
