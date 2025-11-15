@@ -17,16 +17,24 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
+    <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
-          <div className="flex-1 min-w-0">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground truncate" data-testid="text-brand-name">
-              {config.brand.name}
-            </h1>
-            <p className="text-xs sm:text-sm text-muted-foreground truncate" data-testid="text-tagline">
-              {config.brand.tagline}
-            </p>
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <img 
+              src="/attached_assets/logo_1763208520322.PNG" 
+              alt={config.brand.name}
+              className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+              data-testid="brand-logo"
+            />
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground truncate" data-testid="text-brand-name">
+                {config.brand.name}
+              </h1>
+              <p className="text-xs sm:text-sm text-muted-foreground truncate" data-testid="text-tagline">
+                {config.brand.tagline}
+              </p>
+            </div>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
