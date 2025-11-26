@@ -24,6 +24,11 @@ export default function Home() {
     clearCart,
     getCartTotal,
     getCartItemCount,
+    deliveryType,
+    updateDeliveryType,
+    getTotalWeightInKg,
+    getDeliveryCharge,
+    getGrandTotal,
   } = useCart();
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -33,11 +38,11 @@ export default function Home() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
 
-  const handleAddToCart = (product: Product) => {
-    addToCart(product);
+  const handleAddToCart = (product: Product, selectedWeight: string, selectedPrice: number) => {
+    addToCart(product, 1, selectedWeight, selectedPrice);
     toast({
       title: "Added to cart",
-      description: `${product.name} has been added to your cart.`,
+      description: `${product.name} (${selectedWeight}) has been added to your cart.`,
     });
   };
 
@@ -123,8 +128,8 @@ export default function Home() {
         onClose={() => setIsCartOpen(false)}
         cartItems={cartItems}
         cartTotal={getCartTotal()}
-        onUpdateQuantity={updateQuantity}
-        onRemove={removeFromCart}
+        onUpdateQuantity={(productId, selectedWeight, quantity) => updateQuantity(productId, selectedWeight, quantity)}
+        onRemove={(productId, selectedWeight) => removeFromCart(productId, selectedWeight)}
         onClearCart={clearCart}
         onCheckout={handleCheckout}
       />
@@ -134,6 +139,10 @@ export default function Home() {
         onClose={() => setIsCheckoutOpen(false)}
         cartItems={cartItems}
         cartTotal={getCartTotal()}
+        deliveryType={deliveryType}
+        deliveryCharge={getDeliveryCharge()}
+        grandTotal={getGrandTotal()}
+        totalWeight={getTotalWeightInKg()}
         onOrderComplete={handleOrderComplete}
       />
     </div>

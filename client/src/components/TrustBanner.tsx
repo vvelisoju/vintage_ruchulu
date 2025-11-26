@@ -3,7 +3,8 @@ import { Badge } from "@/components/ui/badge";
 export function TrustBanner() {
   const badges = [
     { icon: "🏠", text: "Homemade with Love" },
-    { icon: "✨", text: "100% Authentic" },
+    { icon: "🌿", text: "Zero Preservatives" },
+    { icon: "✨", text: "No Artificial Ingredients" },
     { icon: "📍", text: "From Warangal" },
     { icon: "🌶️", text: "Always Fresh" },
   ];

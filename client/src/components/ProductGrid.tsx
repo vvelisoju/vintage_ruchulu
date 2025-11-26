@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 interface ProductGridProps {
   products: Product[];
-  onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product, selectedWeight: string, selectedPrice: number) => void;
   onViewDetails: (product: Product) => void;
 }
 

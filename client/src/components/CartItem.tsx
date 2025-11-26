@@ -4,13 +4,13 @@ import { CartItem as CartItemType } from "../types/product";
 
 interface CartItemProps {
   item: CartItemType;
-  onUpdateQuantity: (productId: string, quantity: number) => void;
-  onRemove: (productId: string) => void;
+  onUpdateQuantity: (productId: string, selectedWeight: string, quantity: number) => void;
+  onRemove: (productId: string, selectedWeight: string) => void;
 }
 
 export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
-  const { product, quantity } = item;
-  const subtotal = product.price * quantity;
+  const { product, quantity, selectedWeight, selectedPrice } = item;
+  const subtotal = selectedPrice * quantity;
 
   return (
     <div
@@ -33,14 +33,14 @@ export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
               {product.name}
             </h4>
             <p className="text-sm text-muted-foreground" data-testid={`text-cart-item-weight-${product.id}`}>
-              {product.weight}
+              {selectedWeight}
             </p>
           </div>
 
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => onRemove(product.id)}
+            onClick={() => onRemove(product.id, selectedWeight)}
             className="shrink-0 h-8 w-8"
             data-testid={`button-remove-${product.id}`}
           >
@@ -53,7 +53,7 @@ export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => onUpdateQuantity(product.id, quantity - 1)}
+              onClick={() => onUpdateQuantity(product.id, selectedWeight, quantity - 1)}
               className="h-8 w-8"
               data-testid={`button-decrease-${product.id}`}
             >
@@ -67,7 +67,7 @@ export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => onUpdateQuantity(product.id, quantity + 1)}
+              onClick={() => onUpdateQuantity(product.id, selectedWeight, quantity + 1)}
               className="h-8 w-8"
               data-testid={`button-increase-${product.id}`}
             >
@@ -76,7 +76,7 @@ export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
           </div>
 
           <div className="text-right">
-            <p className="text-sm text-muted-foreground">₹{product.price} each</p>
+            <p className="text-sm text-muted-foreground">₹{selectedPrice} each</p>
             <p className="font-bold text-foreground" data-testid={`text-subtotal-${product.id}`}>
               ₹{subtotal}
             </p>

@@ -16,8 +16,8 @@ interface CartDrawerProps {
   onClose: () => void;
   cartItems: CartItemType[];
   cartTotal: number;
-  onUpdateQuantity: (productId: string, quantity: number) => void;
-  onRemove: (productId: string) => void;
+  onUpdateQuantity: (productId: string, selectedWeight: string, quantity: number) => void;
+  onRemove: (productId: string, selectedWeight: string) => void;
   onClearCart: () => void;
   onCheckout: () => void;
 }
@@ -82,6 +82,7 @@ export function CartDrawer({
             </div>
 
             <div className="space-y-4 pt-4 border-t border-border">
+              <Separator />
               <Button
                 variant="outline"
                 onClick={onClearCart}
@@ -93,11 +94,13 @@ export function CartDrawer({
 
               <Separator />
 
-              <div className="flex items-center justify-between text-lg font-bold" data-testid="div-cart-total">
-                <span className="text-foreground" data-testid="text-cart-total-label">Total:</span>
-                <span className="text-foreground" data-testid="text-cart-total">
-                  ₹{cartTotal}
-                </span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-lg font-bold" data-testid="div-cart-total">
+                  <span className="text-foreground" data-testid="text-cart-total-label">Total:</span>
+                  <span className="text-foreground" data-testid="text-cart-total">
+                    ₹{cartTotal}
+                  </span>
+                </div>
               </div>
 
               <Button

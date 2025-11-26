@@ -8,20 +8,25 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Product } from "../types/product";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 interface ProductDetailModalProps {
   product: Product | null;
   open: boolean;
   onClose: () => void;
-  onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product, selectedWeight: string, selectedPrice: number) => void;
 }
 
 export function ProductDetailModal({ product, open, onClose, onAddToCart }: ProductDetailModalProps) {
+  const [selectedQuantity, setSelectedQuantity] = useState(product?.quantities[0]?.weight || "200g");
+  
   if (!product) return null;
 
   const spiceIcons = Array(product.spiceLevel).fill(null);
+  const selectedPrice = product.quantities.find(q => q.weight === selectedQuantity)?.price || product.quantities[0].price;
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -56,11 +61,20 @@ export function ProductDetailModal({ product, open, onClose, onAddToCart }: Prod
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-3xl font-bold text-foreground" data-testid="text-modal-price">
-                  ₹{product.price}
+                  ₹{selectedPrice}
                 </p>
-                <p className="text-sm text-muted-foreground" data-testid="text-modal-weight">
-                  {product.weight}
-                </p>
+                <Select value={selectedQuantity} onValueChange={setSelectedQuantity}>
+                  <SelectTrigger className="w-32 h-10">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {product.quantities.map((quantity) => (
+                      <SelectItem key={quantity.weight} value={quantity.weight}>
+                        {quantity.weight}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="flex items-center gap-2">
@@ -113,7 +127,7 @@ export function ProductDetailModal({ product, open, onClose, onAddToCart }: Prod
             <div className="pt-4">
               <Button
                 onClick={() => {
-                  onAddToCart(product);
+                  onAddToCart(product, selectedQuantity, selectedPrice);
                   onClose();
                 }}
                 className="w-full h-12 text-base"

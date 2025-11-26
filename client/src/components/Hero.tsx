@@ -21,9 +21,20 @@ export function Hero({ onBrowseClick }: HeroProps) {
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight" data-testid="text-hero-title" style={{ fontFamily: 'Poppins, sans-serif', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
           {config.brand.name}
         </h2>
-        <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-6 sm:mb-8 max-w-2xl font-medium" data-testid="text-hero-subtitle" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+        <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-4 sm:mb-6 max-w-2xl font-medium" data-testid="text-hero-subtitle" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
           {config.brand.tagline}
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
+            🏠 Homemade
+          </span>
+          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
+            🌿 Zero Preservatives
+          </span>
+          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
+            ✨ No Artificial Ingredients
+          </span>
+        </div>
         <Button
           onClick={onBrowseClick}
           size="lg"
